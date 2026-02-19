@@ -6,6 +6,6 @@ The core `InvoicingProvider` interface supports creating invoices, fetching invo
 
 ## Provider Discovery
 
-This library extends the [provider-api](https://github.com/commercelink/commercelink-provider-api) plugin system. The `InvoicingProviderDescriptor` interface extends `ProviderDescriptor<InvoicingProvider>` and serves as the SPI entry point for pluggable invoicing implementations.
+This library extends the [provider-api](https://github.com/commerce-link/provider-api) plugin system. The `InvoicingProviderDescriptor` interface extends `ProviderDescriptor<InvoicingProvider>` and serves as the SPI entry point for pluggable invoicing implementations.
 
-Concrete implementations are discovered at runtime via `ServiceLoader`. See the [provider-api README](https://github.com/commercelink/commercelink-provider-api) for registration details.
+Concrete implementations are discovered at runtime via `ServiceLoader`. See the [provider-api README](https://github.com/commerce-link/provider-api) for registration details.
