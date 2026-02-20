@@ -9,8 +9,6 @@ public interface InvoicingProvider {
 
     Invoice fetchInvoiceById(String invoiceId, InvoiceDirection direction);
 
-    Invoice fetchInvoiceByNumber(String invoiceNumber, InvoiceDirection direction);
-
     Invoice fetchInvoiceWithPositions(String invoiceId, InvoiceDirection direction);
 
     List<Invoice> fetchInvoices(LocalDate dateFrom, LocalDate dateTo, InvoiceDirection direction);
