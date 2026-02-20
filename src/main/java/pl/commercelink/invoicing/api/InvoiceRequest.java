@@ -12,7 +12,6 @@ public record InvoiceRequest(
         double paidAmount,
         String description,
         int paymentTerms,
-        String departmentId,
         boolean splitPaymentsEnabled,
         boolean send,
         String wmsOrderNo,
@@ -33,7 +32,6 @@ public record InvoiceRequest(
         private double paidAmount;
         private String description;
         private int paymentTerms;
-        private String departmentId;
         private boolean splitPaymentsEnabled;
         private boolean send;
 
@@ -45,13 +43,12 @@ public record InvoiceRequest(
         public InvoiceBuilder paidAmount(double paidAmount) { this.paidAmount = paidAmount; return this; }
         public InvoiceBuilder description(String description) { this.description = description; return this; }
         public InvoiceBuilder paymentTerms(int paymentTerms) { this.paymentTerms = paymentTerms; return this; }
-        public InvoiceBuilder departmentId(String departmentId) { this.departmentId = departmentId; return this; }
         public InvoiceBuilder splitPaymentsEnabled(boolean splitPaymentsEnabled) { this.splitPaymentsEnabled = splitPaymentsEnabled; return this; }
         public InvoiceBuilder send(boolean send) { this.send = send; return this; }
 
         public InvoiceRequest build() {
             return new InvoiceRequest(invoiceKind, orderId, sellDate, billingParty, positions,
-                    paidAmount, description, paymentTerms, departmentId, splitPaymentsEnabled, send,
+                    paidAmount, description, paymentTerms, splitPaymentsEnabled, send,
                     null, 0, null);
         }
     }
@@ -75,7 +72,7 @@ public record InvoiceRequest(
 
         public InvoiceRequest build() {
             return new InvoiceRequest(InvoiceKind.Advance, orderId, sellDate, billingParty, null,
-                    paidAmount, null, 0, null, splitPaymentsEnabled, send,
+                    paidAmount, null, 0, splitPaymentsEnabled, send,
                     wmsOrderNo, 0, null);
         }
     }
@@ -99,7 +96,7 @@ public record InvoiceRequest(
 
         public InvoiceRequest build() {
             return new InvoiceRequest(InvoiceKind.Final, orderId, null, billingParty, null,
-                    0, null, 0, null, splitPaymentsEnabled, send,
+                    0, null, 0, splitPaymentsEnabled, send,
                     wmsOrderNo, leftToPay, invoiceNumbers);
         }
     }
