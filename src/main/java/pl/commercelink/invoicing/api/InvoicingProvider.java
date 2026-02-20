@@ -1,6 +1,5 @@
 package pl.commercelink.invoicing.api;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface InvoicingProvider {
@@ -9,7 +8,7 @@ public interface InvoicingProvider {
 
     Invoice fetchInvoiceById(String invoiceId, InvoiceDirection direction);
 
-    List<Invoice> fetchInvoices(LocalDate dateFrom, LocalDate dateTo, InvoiceDirection direction);
+    List<Invoice> fetchInvoicesByOrderId(String orderId, InvoiceDirection direction);
 
     byte[] fetchInvoicePdf(String invoiceId);
 
