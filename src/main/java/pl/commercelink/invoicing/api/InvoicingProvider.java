@@ -12,6 +12,18 @@ public interface InvoicingProvider {
     /** Returns invoices matching the order ID, or empty list if none found. */
     List<Invoice> fetchInvoicesByOrderId(String orderId, InvoiceDirection direction);
 
+    /**
+     * Returns the purchase invoices of the order that are still waiting for approval. A provider without an approval
+     * step returns every purchase invoice of the order.
+     */
+    default List<Invoice> fetchPurchaseInvoicesAwaitingApprovalByOrderId(String orderId) {
+        return fetchInvoicesByOrderId(orderId, InvoiceDirection.Purchase);
+    }
+
+    /** Marks the purchase invoice as approved. A provider without an approval step does nothing. */
+    default void approvePurchaseInvoice(String invoiceId) {
+    }
+
     /** Returns raw PDF bytes for the invoice. */
     byte[] fetchInvoicePdf(String invoiceId);
 

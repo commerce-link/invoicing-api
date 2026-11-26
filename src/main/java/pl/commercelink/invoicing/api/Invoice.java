@@ -16,10 +16,22 @@ public record Invoice(
         LocalDate paymentToDate,
         List<InvoicePosition> positions,
         BillingParty seller,
-        BillingParty buyer
+        BillingParty buyer,
+        boolean partiallyPaid
 ) {
     public Invoice {
         positions = positions != null ? List.copyOf(positions) : List.of();
+    }
+
+    /** Kept for the adapters built before {@code partiallyPaid}: they report an invoice as paid in full or not at all. */
+    public Invoice(String id, String number, String orderId, Price amount, String viewUrl, String currency,
+                   double exchangeRate, boolean paid, LocalDate paymentToDate, List<InvoicePosition> positions,
+                   BillingParty seller, BillingParty buyer) {
+        this(id, number, orderId, amount, viewUrl, currency, exchangeRate, paid, paymentToDate, positions, seller, buyer, false);
+    }
+
+    public boolean unpaid() {
+        return !paid && !partiallyPaid;
     }
 
     public boolean hasOrderId(String other) {
