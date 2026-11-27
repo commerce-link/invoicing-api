@@ -12,6 +12,10 @@ public interface InvoicingProvider {
     /** Returns invoices matching the order ID, or empty list if none found. */
     List<Invoice> fetchInvoicesByOrderId(String orderId, InvoiceDirection direction);
 
+    /** Marks the invoice as approved ({@link Invoice#approved()}). A provider without an approval step does nothing. */
+    default void approveInvoiceById(String invoiceId, InvoiceDirection direction) {
+    }
+
     /** Returns raw PDF bytes for the invoice. */
     byte[] fetchInvoicePdf(String invoiceId);
 
